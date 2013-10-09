@@ -208,14 +208,11 @@ class RiskMetricsCumulative(object):
                     {'null return': 0.0}).append(
                     self.algorithm_returns)
 
-        mean_return = self.algorithm_returns.mean()
+        self.mean_returns = pd.rolling_mean(self.algorithm_returns,
+                                            window=len(self.algorithm_returns),
+                                            min_periods=1)
 
-        self.mean_returns_cont[dt] = mean_return
-        self.mean_returns = self.mean_returns_cont.valid()
-
-        self.annualized_mean_returns_cont[dt] = mean_return * 252
-        self.annualized_mean_returns = \
-            self.annualized_mean_returns_cont.valid()
+        self.annualized_mean_returns = self.mean_returns * 252
 
         self.benchmark_returns_cont[dt] = benchmark_returns
         self.benchmark_returns = self.benchmark_returns_cont.valid()
