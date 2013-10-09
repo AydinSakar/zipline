@@ -152,8 +152,6 @@ class RiskMetricsCumulative(object):
 
         self.algorithm_returns_cont = pd.Series(index=cont_index)
         self.benchmark_returns_cont = pd.Series(index=cont_index)
-        self.mean_returns_cont = pd.Series(index=cont_index)
-        self.annualized_mean_returns_cont = pd.Series(index=cont_index)
 
         # The returns at a given time are read and reset from the respective
         # returns container.
