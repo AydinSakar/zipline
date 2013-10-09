@@ -186,9 +186,7 @@ class RiskMetricsCumulative(object):
                     {'null return': 0.0}).append(
                     self.algorithm_returns)
 
-        mean_return = (np.sum(self.algorithm_returns)
-                       /
-                       np.size(self.algorithm_returns))
+        mean_return = self.algorithm_returns.mean()
 
         self.annualized_mean_returns_cont[dt] = mean_return * 252
         self.annualized_mean_returns = \
